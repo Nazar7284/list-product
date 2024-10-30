@@ -1,24 +1,23 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import ListProduct from "./components/ListProduct";
+import useModal from "./hooks/useModal";
+import AddProductModal from "./components/AddProductModal";
 
 function App() {
+  const modalProps = useModal();
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+    <div className="p-8 w-full overflow-hidden">
+      <AddProductModal {...modalProps} />
+      <div className="flex justify-between items-center mb-6">
+        <h1 className="text-3xl font-bold">Product List</h1>
+        <button
+          onClick={modalProps.onOpen}
+          className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition"
         >
-          Learn React
-        </a>
-      </header>
+          Додати продукт
+        </button>
+      </div>
+      <ListProduct />
     </div>
   );
 }
